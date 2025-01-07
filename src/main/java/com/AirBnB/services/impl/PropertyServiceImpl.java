@@ -3,6 +3,7 @@ package com.AirBnB.services.impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.AirBnB.dto.PropertyDto;
 import com.AirBnB.entity.Property;
 import com.AirBnB.repositories.PropertyRepo;
 import com.AirBnB.services.PropertyService;
+
 
 @Service
 public class PropertyServiceImpl implements PropertyService{
@@ -52,5 +54,27 @@ public class PropertyServiceImpl implements PropertyService{
 		
 		return properties;
 	}
+
+//	@Override
+//	public List<Property> searchProperty(String cityname) {
+//		
+//		List<Property> serachProperty = this.propertyRepo.serachProperty(cityname);
+//		
+//		return serachProperty;
+//
+//	}
+	
+	@Override
+	public List<PropertyDto> searchProperty(String cityname) {
+		
+		List<Property> serachProperty1 = this.propertyRepo.serachProperty(cityname);
+		
+		List<PropertyDto> properties = serachProperty1.stream().map((cat)-> this.modelMapper.map(cat, PropertyDto.class)).toList();
+		
+		return properties;
+
+	}
+	
+	
 
 }
