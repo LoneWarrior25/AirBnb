@@ -13,5 +13,7 @@ public interface PropertyService {
 	
 	List<PropertyDto> getAllProperty();
 	
+//	List<Property> searchProperty(String cityname);
 	
+	List<PropertyDto> searchProperty(String cityname);
 }
